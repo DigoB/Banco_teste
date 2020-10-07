@@ -11,9 +11,12 @@ import com.banco.conta.model.PrimeiroCadastro;
 import com.banco.conta.model.SegundoCadastro;
 import com.banco.conta.repositories.PcRepository;
 import com.banco.conta.repositories.ScRepository;
+import com.banco.conta.services.EmailDuplicado;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +34,13 @@ public class CadastroController {
     private PcRepository pcRepository;
     @Autowired 
     private ScRepository scRepository;
+    @Autowired
+    private EmailDuplicado emailDuplicado;
+
+    @InitBinder
+    public void init (WebDataBinder binder){
+        binder.addValidators(emailDuplicado);
+    }
 
     @PostMapping("/pc")
     public ResponseEntity <PrimeiroCadastro> primeiroCadastro(@RequestBody @Valid PcForm form, UriComponentsBuilder uri){
