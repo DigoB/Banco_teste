@@ -47,7 +47,7 @@ public class NovaConta {
         
         message.setTo(conta.getCliente().getEmail());
 
-        message.setSubject("Sobre sua abertorua de conta!");
+        message.setSubject("Sobre sua abertura de conta!");
         message.setText("Sua conta foi criada com sucesso!\n" + 
         "Seus dados são: \n" + 
         "Agencia: " + conta.getAgencia() + "\n" + 
