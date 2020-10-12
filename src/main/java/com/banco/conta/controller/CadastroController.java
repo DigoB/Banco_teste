@@ -52,7 +52,7 @@ public class CadastroController {
     private NovaConta novaConta;
     @InitBinder
     public void init(WebDataBinder binder) {
-        binder.addValidators(emailDuplicado);
+        //binder.addValidators(emailDuplicado);
     }
 
     @PostMapping("/pc")

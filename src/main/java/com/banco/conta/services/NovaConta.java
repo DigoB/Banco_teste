@@ -1,12 +1,9 @@
 package com.banco.conta.services;
 
-import java.util.Properties;
-
 import com.banco.conta.model.Cliente;
 import com.banco.conta.model.Conta;
 import com.banco.conta.repositories.ContaRepository;
 
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -48,8 +45,7 @@ public class NovaConta {
     private void emailAceite(Conta conta) {
         SimpleMailMessage message = new SimpleMailMessage();
         
-        // message.setTo(conta.getCliente().getEmail());
-        message.setTo("matheus.san99@gmail.com");
+        message.setTo(conta.getCliente().getEmail());
 
         message.setSubject("Sobre sua abertorua de conta!");
         message.setText("Sua conta foi criada com sucesso!\n" + 

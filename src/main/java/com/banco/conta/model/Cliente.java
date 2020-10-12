@@ -1,8 +1,15 @@
 package com.banco.conta.model;
 
+import java.security.PublicKey;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.banco.conta.security.Perfis;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -40,13 +48,19 @@ public class Cliente {
     private String cidade;
     @NotNull
     private String estado;
-     
+    
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
+    
     @Deprecated
     public Cliente(){
-
+        adicionarPerfil(Perfis.CLIENTE);
     }
 
     public Cliente(SegundoCadastro cliente) {
+        adicionarPerfil(Perfis.CLIENTE);
         this.nome = cliente.getPrimeiroCadastro().getNome();
         this.sobrenome = cliente.getPrimeiroCadastro().getSobrenome();
         this.email = cliente.getPrimeiroCadastro().getEmail();
@@ -156,5 +170,12 @@ public class Cliente {
     public void setEstado(String estado) {
         this.estado = estado;
     }
- 
+    
+    public Set<Perfis> getPerfis() {
+        return perfis.stream().map(x -> Perfis.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void adicionarPerfil(Perfis perfil) {
+        perfis.add(perfil.getCodigo());
+    }
 }

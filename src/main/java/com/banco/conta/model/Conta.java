@@ -10,28 +10,40 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Entity
 public class Conta {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull @Size(max = 4)
+    @NotNull
+    @Size(max = 4)
     private String agencia;
-    @NotNull @Size(max = 8)
+    @NotNull
+    @Size(max = 8)
     private String conta;
-    @NotNull @Size(max = 1)
+    @NotNull
+    @Size(max = 1)
     private String digito;
     @NotNull
     private Integer codBanco;
-    @NotNull @OneToOne
+    @NotNull
+    @OneToOne
     private Cliente cliente;
     @NotNull
     private Double saldo;
 
+    private String senha;
+
     @Deprecated
-    public Conta() {}
+    public Conta() {
+    }
 
     public Conta(Cliente cliente) {
         Random random = new Random();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
 
         this.agencia = String.valueOf(random.nextInt((9999 - 1000) + 1) + 1000);
         this.conta = String.valueOf(random.nextInt((99999999 - 10000000) + 1) + 10000000);
@@ -39,6 +51,7 @@ public class Conta {
         this.codBanco = 500;
         this.cliente = cliente;
         this.saldo = 0d;
+        this.senha = encoder.encode("123456");
     }
 
     public Long getId() {
@@ -96,5 +109,14 @@ public class Conta {
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
+
+    public String getSenha() {
+        return this.senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 
 }
