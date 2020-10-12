@@ -41,6 +41,11 @@ public class Cliente {
     @NotNull
     private String estado;
      
+    @Deprecated
+    public Cliente(){
+
+    }
+
     public Cliente(SegundoCadastro cliente) {
         this.nome = cliente.getPrimeiroCadastro().getNome();
         this.sobrenome = cliente.getPrimeiroCadastro().getSobrenome();

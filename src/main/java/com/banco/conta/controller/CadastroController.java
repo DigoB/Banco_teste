@@ -119,12 +119,13 @@ public class CadastroController {
         URI path = uBuilder.path("/cadastro/qc/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(path).body(cliente);
     }
+
     @GetMapping("/qc/{id}/{aceite}")
     public ResponseEntity<?> aceiteDeCadastro(@PathVariable Long id, @PathVariable String aceite) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         
         // Precisamos criar a conta do cliente, para caso seja aceito
-        novaConta.envioDeEmail(aceite, cliente.orElseThrow(() -> new IllegalStateException("Cliente nâo encontrado")));
+        novaConta.criarConta(aceite, cliente.orElseThrow(() -> new IllegalStateException("Cliente nâo encontrado")));
         return ResponseEntity.ok().build();
     }
 }
