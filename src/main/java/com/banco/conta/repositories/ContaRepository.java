@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContaRepository extends JpaRepository<Conta, Long> {
     Optional<Conta> findByCliente(Cliente Cliente);
+    Optional<Conta> findByConta(String conta);
 }

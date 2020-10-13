@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.banco.conta.model.PrimeiroCadastro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -72,7 +73,9 @@ public class PcForm {
         this.nascimento = nascimento;
     }
 
-
+    public PrimeiroCadastro cadastro() {
+        return new PrimeiroCadastro(this.nome, this.sobrenome, this.email, this.cnh, this.nascimento);
+    }
 
     
 }

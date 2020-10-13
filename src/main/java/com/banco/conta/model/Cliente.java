@@ -1,6 +1,5 @@
 package com.banco.conta.model;
 
-import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;

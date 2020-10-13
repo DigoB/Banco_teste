@@ -107,7 +107,11 @@ public class Conta {
     }
 
     public void setSaldo(Double saldo) {
-        this.saldo = saldo;
+        this.saldo -= saldo;
+    }
+
+    public void validarTransferencia(Double saldo) {
+        this.saldo += saldo;
     }
 
     public String getSenha() {

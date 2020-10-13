@@ -4,6 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.banco.conta.model.PrimeiroCadastro;
+import com.banco.conta.model.SegundoCadastro;
+
 public class ScForm {
     @NotBlank @NotNull @Pattern(regexp = "\\d{5}-\\d{3}")
     private String cep;
@@ -67,5 +70,7 @@ public class ScForm {
         this.estado = estado;
     }
 
-    
+    public SegundoCadastro cadastro(PrimeiroCadastro pc) {
+        return new SegundoCadastro(this.cep, this.rua, this.bairro, this.complemento, this.cidade, this.estado, pc);
+    }
 }
