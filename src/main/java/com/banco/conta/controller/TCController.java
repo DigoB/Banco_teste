@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-public class TCCadastro {
+public class TCController {
     
     @Autowired
     private PcRepository pcRepository;

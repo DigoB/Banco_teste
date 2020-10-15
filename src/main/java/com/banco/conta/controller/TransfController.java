@@ -35,6 +35,11 @@ public class TransfController {
     public ResponseEntity<Transferencias> criarTransferencia(@RequestBody @Valid TransferenciaForm form, UriComponentsBuilder uriBuilder){
         Conta contaDestino = contaRepository.findByConta(form.getContaDestino()).orElseThrow(
             () -> new IllegalStateException("Conta destino não existe"));
+
+        if (!contaDestino.getAgencia().equals(form.getAgenciaDestino())) {
+            throw new IllegalArgumentException("Conta destino não existe");
+        }
+        
         Conta contaOrigem = contaRepository.findByCliente(
             clienteRepository.findByEmail(ContaService.usuarioAutenticado().getUsername()).orElseThrow(
                 () -> new IllegalStateException("Usuário não encontrado"))).orElseThrow(

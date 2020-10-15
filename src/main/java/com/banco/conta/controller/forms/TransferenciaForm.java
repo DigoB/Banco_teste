@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
 public class TransferenciaForm {
-    @NotNull @NotBlank
+    @NotNull
     private Double valor;
     @NotNull @NotBlank
     private String cpf;

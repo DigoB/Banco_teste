@@ -27,6 +27,7 @@ public class ContaController {
 
         conta.validarTransferencia(transf.getValor());
         contaRepository.save(conta);
+        transfRepository.delete(transf);
 
         return ResponseEntity.ok().build();
     }

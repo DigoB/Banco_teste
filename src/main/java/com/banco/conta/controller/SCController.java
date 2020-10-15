@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-public class SCCadastro {
+public class SCController {
     
     @Autowired
     private ScRepository scRepository;

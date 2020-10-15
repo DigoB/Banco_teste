@@ -50,7 +50,7 @@ public class Conta {
         this.digito = String.valueOf(random.nextInt(10));
         this.codBanco = 500;
         this.cliente = cliente;
-        this.saldo = 0d;
+        this.saldo = 200d;
         this.senha = encoder.encode("123456");
     }
 
