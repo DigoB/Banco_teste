@@ -23,14 +23,14 @@ public class PcForm {
     @NotNull @JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
     private LocalDate nascimento;
 
-    // public PcForm(String nome, String sobrenome, String email, String cnh, LocalDate nascimento){
+    public PcForm(String nome, String sobrenome, String email, String cnh, LocalDate nascimento){
 
-    //     this.nome = nome;
-    //     this.sobrenome = sobrenome;
-    //     this.email = email;
-    //     this.cnh = cnh;
-    //     this.nascimento = nascimento;
-    // }
+      this.nome = nome;
+      this.sobrenome = sobrenome;
+      this.email = email;
+      this.cnh = cnh;
+      this.nascimento = nascimento;
+    }
 
 
     public String getNome() {

@@ -41,7 +41,7 @@ public class QCController {
     public ResponseEntity<?> aceiteDeCadastro(@PathVariable Long id, @PathVariable String aceite) {
         Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new IllegalStateException("Cliente nâo encontrado"));
         
-        // Precisamos criar a conta do cliente, para caso seja aceito
+
         novaConta.criarConta(aceite, cliente);
         return ResponseEntity.ok().build();
     }
